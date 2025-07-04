@@ -1,5 +1,14 @@
-import { readFileSync } from "fs"
+import { fileURLToPath } from "url";
+import path from "path";
+import { readFileSync, writeFileSync, mkdirSync } from "fs"
 import { pipeline } from "@xenova/transformers"
+
+const filePath = fileURLToPath(import.meta.url);
+const currentDir = path.dirname(filePath);
+
+const outputDir = path.resolve(currentDir, '../../static/artifacts')
+const outputPath = path.join(outputDir, 'guideline-embeddings.json')
+mkdirSync(outputDir, { recursive: true })
 
 interface RawGuideline { 
   content: string,
@@ -19,7 +28,9 @@ const parsedGuidelines = JSON.parse(guidelinesSource) as RawGuideline[]
 
 const guidelinesWithEmbeddings = await Promise.all(parsedGuidelines.map(async (guideline): Promise<Guideline> => {
   const tensor = await extractor(guideline.content, {
+    // Token combination method
     pooling: 'mean',
+    // Recommend for semantic searchs
     normalize: true
   })
 
@@ -29,4 +40,6 @@ const guidelinesWithEmbeddings = await Promise.all(parsedGuidelines.map(async (g
   }
 }))
 
-console.log('output', guidelinesWithEmbeddings)
+writeFileSync(outputPath, JSON.stringify(guidelinesWithEmbeddings), {
+  flag: 'w' 
+})
