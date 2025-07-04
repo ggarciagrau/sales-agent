@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:backend": "pnpm --filter backend start:dev",
-    "dev:frontend": "pnpm --filter frontend dev",
-    "dev": "concurrently -n back,front -c yellow,cyan \"pnpm dev:backend\" \"pnpm dev:frontend\"",
+    "dev:backend": "./scripts/setup-dev.sh pnpm --filter backend start:dev",
+    "dev:frontend": "./scripts/setup-dev.sh pnpm --filter frontend dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
