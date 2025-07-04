@@ -1,0 +1,24 @@
+generator Client {
+    provider = "prisma-client-js"
+    output = "../node_modules/@prisma-clients/sales-agent"
+}
+
+datasource db {
+    provider = "postgresql"
+    url = env("DATABASE_URL")
+}
+
+model Guideline {
+    id String @id @default(uuid()) @db.Uuid
+    title String
+    content String
+    category String?
+    priority Int @default(1)
+    active Boolean @default(true)
+    isGlobal Boolean @default(false) @map("is_global")
+    embedding Unsupported("vector(1536)")?
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+    
+    @@map("guidelines")
+}
