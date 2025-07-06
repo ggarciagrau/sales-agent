@@ -1,6 +1,5 @@
 {
   "name": "@sales-agent/db-connector",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",

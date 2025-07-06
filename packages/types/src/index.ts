@@ -8,3 +8,9 @@ export interface RawGuideline {
 export interface Guideline extends RawGuideline {
   embedding: unknown;
 }
+
+export interface ChatMessage {
+  sessionId: string;
+  role: 'user' | 'assistant';
+  content: string;
+}

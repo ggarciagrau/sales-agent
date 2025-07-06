@@ -1,5 +1,5 @@
 {
-  "name": "@sales-agent/generate-embedding",
+  "name": "@sales-agent/prompt-builder",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -11,10 +11,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@xenova/transformers": "^2.17.2"
-  },
   "devDependencies": {
+    "@sales-agent/db-connector": "workspace:^",
     "@sales-agent/types": "workspace:^",
     "@types/node": "^16.0.0",
     "tsx": "^4.20.3",

@@ -1,4 +1,4 @@
-import { DataArray, pipeline } from "@xenova/transformers";
+import { type DataArray } from "@xenova/transformers";
 
 interface Options {
   model?: string;
@@ -10,6 +10,8 @@ export const generateEmbedding = async (
   content: string,
   options?: Options
 ): Promise<DataArray> => {
+  const { pipeline } = await import("@xenova/transformers");
+
   const {
     model = "Xenova/all-MiniLM-L6-v2",
     pooling = "mean",
