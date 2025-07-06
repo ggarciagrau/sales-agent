@@ -3,7 +3,7 @@ import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import { readFileSync, mkdirSync } from "fs";
 import { PrismaDB } from "db-connector";
-import { generateEmbedding } from "generate-embedding";
+import { generateEmbedding } from "@sales-agent/generate-embedding";
 
 interface RawGuideline {
   content: string;

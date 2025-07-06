@@ -1,5 +1,5 @@
 {
-  "name": "generate-embedding",
+  "name": "@sales-agent/generate-embedding",
   "type": "module",
   "version": "1.0.0",
   "description": "",
