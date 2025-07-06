@@ -12,13 +12,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@sales-agent/generate-embedding": "workspace:^",
     "@sales-agent/types": "workspace:^",
     "@types/node": "^16.0.0",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@sales-agent/db-connector": "workspace:^",
-    "@sales-agent/generate-embedding": "workspace:^"
+    "@sales-agent/db-connector": "workspace:^"
   }
 }

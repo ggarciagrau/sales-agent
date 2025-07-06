@@ -1,5 +1,4 @@
-import { pipeline } from "@xenova/transformers";
-import { RawGuideline, Guideline } from '@sales-agent/types';
+import { DataArray, pipeline } from "@xenova/transformers";
 
 interface Options {
   model?: string;
@@ -8,9 +7,9 @@ interface Options {
 }
 
 export const generateEmbedding = async (
-  rawGuideline: RawGuideline,
+  content: string,
   options?: Options
-): Promise<Guideline> => {
+): Promise<DataArray> => {
   const {
     model = "Xenova/all-MiniLM-L6-v2",
     pooling = "mean",
@@ -19,36 +18,10 @@ export const generateEmbedding = async (
 
   const extractor = await pipeline("feature-extraction", model);
 
-  const tensor = await extractor(rawGuideline.content, {
+  const tensor = await extractor(content, {
     pooling,
     normalize,
   });
 
-  return {
-    ...rawGuideline,
-    embedding: tensor.data,
-  };
+  return tensor.data
 };
-
-// const guidelinesSource = readFileSync("./guidelines.json", "utf8");
-// const parsedGuidelines = JSON.parse(guidelinesSource) as RawGuideline[];
-
-// const guidelinesWithEmbeddings = await Promise.all(
-//   parsedGuidelines.map(async (guideline): Promise<Guideline> => {
-//     const tensor = await extractor(guideline.content, {
-//       // Token combination method
-//       pooling: "mean",
-//       // Recommend for semantic searchs
-//       normalize: true,
-//     });
-
-//     return {
-//       ...guideline,
-//       embedding: tensor.data,
-//     };
-//   })
-// );
-
-// writeFileSync(outputPath, JSON.stringify(guidelinesWithEmbeddings), {
-//   flag: "w",
-// });

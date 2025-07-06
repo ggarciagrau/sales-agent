@@ -11,6 +11,7 @@ const currentDir = path.dirname(filePath);
 
 // EXPORT FILE
 const exportDir = path.resolve(currentDir, "../../../static/artifacts");
+
 const generateEmbeddings = async (): Promise<Guideline[]> => {
   mkdirSync(exportDir, { recursive: true });
   const source = path.resolve(
@@ -21,7 +22,7 @@ const generateEmbeddings = async (): Promise<Guideline[]> => {
   const sourceContents = JSON.parse(sourceFile) as RawGuideline[];
 
   return await Promise.all(
-    sourceContents.map((guideline) => generateEmbedding(guideline))
+    sourceContents.map(async (guideline) => ({...guideline, embedding: await generateEmbedding(guideline.content)}))
   );
 };
 
@@ -67,7 +68,6 @@ const insertEmbedding = async (guideline: any) => {
     Object.values(guideline.embedding)
   );
 };
-
 
 const waitForDatabaseReady = async (maxRetries = 15, delay = 1000) => {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
