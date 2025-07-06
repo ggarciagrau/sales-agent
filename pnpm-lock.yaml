@@ -161,12 +161,12 @@ importers:
 
   tools/bootstrap:
     dependencies:
+      '@sales-agent/db-connector':
+        specifier: workspace:^
+        version: link:../../packages/db-connector
       '@sales-agent/generate-embedding':
         specifier: workspace:^
         version: link:../../packages/generate-embedding
-      db-connector:
-        specifier: workspace:*
-        version: link:../../packages/db-connector
     devDependencies:
       '@sales-agent/types':
         specifier: workspace:^

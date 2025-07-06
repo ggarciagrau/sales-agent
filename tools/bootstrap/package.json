@@ -18,7 +18,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@sales-agent/generate-embedding": "workspace:^",
-    "db-connector": "workspace:*"
+    "@sales-agent/db-connector": "workspace:^",
+    "@sales-agent/generate-embedding": "workspace:^"
   }
 }

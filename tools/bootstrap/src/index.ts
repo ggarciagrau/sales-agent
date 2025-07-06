@@ -2,7 +2,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import { readFileSync, mkdirSync } from "fs";
-import { PrismaDB } from "db-connector";
+import { PrismaDB } from "@sales-agent/db-connector";
 import { generateEmbedding } from "@sales-agent/generate-embedding";
 import { RawGuideline, Guideline} from "@sales-agent/types";
 
