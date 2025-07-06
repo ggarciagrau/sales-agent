@@ -68,6 +68,24 @@ const insertEmbedding = async (guideline: any) => {
   );
 };
 
+
+const waitForDatabaseReady = async (maxRetries = 15, delay = 1000) => {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      console.log(`⏳ Waiting for DB... Attempt ${attempt}/${maxRetries}`);
+      const db = new PrismaDB();
+      await db.$connect();
+      await db.$disconnect();
+      console.log("✅ Database is ready!\n");
+      return;
+    } catch (err) {
+      await new Promise((res) => setTimeout(res, delay));
+    }
+  }
+
+  throw new Error("❌ Timed out waiting for the database to be ready");
+}
+
 console.log(
   "\n🚀 \x1b[1m\x1b[36m=======================================\x1b[0m"
 );
@@ -86,6 +104,8 @@ try {
     error
   );
 }
+
+await waitForDatabaseReady()
 
 console.log("🗄️  \x1b[1m\x1b[33mRunning database migration...\x1b[0m");
 try {
