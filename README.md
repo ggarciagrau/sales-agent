@@ -201,10 +201,14 @@ CREATE TABLE guidelines (
 ### **What I'd Build Next**
 - **Guideline management UI** for non-technical users
 - **A/B testing framework** for guideline effectiveness
+- **Reinforcement learning** for guideline selection and ranking
 - **Analytics dashboard** for conversation insights
 - **Multi-tenant support** for different sales domains
 - **Advanced caching** for embedding generation and retrieval
 - **Fine-tuned models** for domain-specific understanding
+- **RAG optimization** with hybrid search (dense + sparse vectors)
+- **Multi-modal AI support** for processing images, documents, and voice
+- **Guideline prioritization and categorization** with automatic taxonomy generation
 
 ---
 
