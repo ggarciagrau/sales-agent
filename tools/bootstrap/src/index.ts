@@ -26,29 +26,6 @@ const generateEmbeddings = async (): Promise<Guideline[]> => {
   );
 };
 
-// IMPORT FILE;
-// const inputDir = path.resolve(currentDir, "../../../static/artifacts");
-// const input = path.join(inputDir, "guideline-embeddings.json");
-// const rawGuidelines = readFileSync(input, "utf-8");
-// const parsedGuidelines = JSON.parse(rawGuidelines);
-
-// const res = await db.$queryRawUnsafe(`SELECT inet_server_addr(), inet_server_port();`);
-// console.log('Res: ', res)
-
-// const dbName = await db.$queryRawUnsafe(`SELECT current_database()`);
-// console.log('Database:', dbName[0].current_database);
-
-// const schema = await db.$queryRawUnsafe(`SELECT current_schema()`);
-// console.log('Schema:', schema[0].current_schema);
-
-// const publicTables = await db.$queryRawUnsafe(`
-//   SELECT table_name
-//   FROM information_schema.tables
-//   WHERE table_schema = 'public';
-// `);
-
-// console.table(publicTables);
-
 const db = new PrismaDB();
 
 const insertEmbedding = async (guideline: any) => {
