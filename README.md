@@ -1,7 +1,7 @@
 # 🦜 Budgerigar Sales Agent - Guideline-Aware AI Agent
 
 <div align="center">
-  <img src="./docs/images/budgie-agent.png" alt="Budgie agent" width="300">
+  <img src="./docs/images/budgie-agent.png" alt="Budgie agent" width="200">
 </div>
 
 A sophisticated AI-powered sales agent that dynamically incorporates behavioral guidelines into its responses based on vector similarity search. This system demonstrates how to create basic context-aware AI agents that follow specific behavioral rules.

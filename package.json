@@ -6,6 +6,7 @@
   "scripts": {
     "dev:backend": "./scripts/setup-dev.sh pnpm --filter backend start:dev",
     "dev:frontend": "./scripts/setup-dev.sh pnpm --filter frontend dev",
+    "bootstrap": "./scripts/setup-dev.sh pnpm --filter bootstrap bootstrap",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
