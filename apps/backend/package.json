@@ -22,9 +22,13 @@
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@sales-agent/db-connector": "workspace:^",
+    "@sales-agent/generate-embedding": "workspace:^",
+    "@sales-agent/prompt-builder": "workspace:^",
+    "openai": "^5.8.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
@@ -33,6 +37,7 @@
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
+    "@sales-agent/types": "workspace:^",
     "@types/express": "^4.17.13",
     "@types/jest": "28.1.8",
     "@types/node": "^16.0.0",
