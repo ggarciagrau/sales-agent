@@ -17,30 +17,37 @@ export class OpenAiApiService {
     }
 
     const res = await this.openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4',
       messages: [
         {
           role: 'system',
-          content:
-            'You are a helpful assistant that summarizes conversations. Provide a concise summary of the key points and outcomes from the conversation.',
+          content: `You are a system that summarizes customer interactions with a budgerigar sales agent. Provide a concise summary of the customer's intent, concerns, and previous decisions. Focus on what's relevant to continue the sales process effectively.`,
         },
         {
           role: 'user',
           content: `Please summarize this conversation:\n\n${message}`,
         },
       ],
-      max_tokens: 200,
+      max_tokens: 2000,
       temperature: 0.3,
     });
 
     return res.choices[0].message.content || 'Unable to generate summary.';
   }
 
-  async chatCompletion(prompt: string, userInput: string): Promise<string> {
+  async chatCompletion(
+    prompt: string,
+    summary: string,
+    userInput: string,
+  ): Promise<string> {
     const res = await this.openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4',
       messages: [
         { role: 'system', content: prompt },
+        {
+          role: 'assistant',
+          content: `Here is a summary of the conversation so far: ${summary}`,
+        },
         { role: 'user', content: userInput },
       ],
     });

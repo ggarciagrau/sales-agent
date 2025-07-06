@@ -5,27 +5,22 @@ interface Options {
   systemIntro: string;
   globalGuidelines: Guideline[];
   dynamicGuidelines: Guideline[];
-  summary: string;
-  additionalInformation?: string;
 }
 
 export const buildPrompt = ({
   systemIntro,
   globalGuidelines,
   dynamicGuidelines,
-  summary,
-  additionalInformation,
 }: Options): string => {
-  const guidelines = [...globalGuidelines, ...dynamicGuidelines];
-
-  const formattedGuidelines = guidelines
-    .map((guideline) => `- ${guideline.content}`)
-    .join("\n");
-
   const preparedPrompt = systemIntro
-    .replace("[INSERT_GUIDELINES_HERE]", formattedGuidelines)
-    .replace("[INSERT_SUMMARY_HERE]", summary)
-    .replace("[INSERT_USER_INPUT_HERE]", additionalInformation ?? '')
+    .replace(
+      "[INSERT_GLOBAL_GUIDELINES_HERE]",
+      formatGuidelines(globalGuidelines)
+    )
+    .replace(
+      "[INSERT_DYNAMIC_GUIDELINES_HERE]",
+      formatGuidelines(dynamicGuidelines)
+    )
     .trim();
 
   return preparedPrompt;
@@ -37,3 +32,6 @@ export const formatChat = (messages: ChatMessage[]) =>
       (msg) => `${msg.role === "user" ? "Customer" : "Agent"}: ${msg.content}`
     )
     .join("\n");
+
+const formatGuidelines = (guidelines: Guideline[]) =>
+  guidelines.map((guideline) => `- ${guideline.content}`).join("\n");

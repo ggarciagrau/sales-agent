@@ -6,6 +6,11 @@ interface Options {
   normalize?: boolean;
 }
 
+const extractorCache: Record<
+  string,
+  Promise<(text: string, cfg: any) => any>
+> = {};
+
 export const generateEmbedding = async (
   content: string,
   options?: Options
@@ -13,17 +18,21 @@ export const generateEmbedding = async (
   const { pipeline } = await import("@xenova/transformers");
 
   const {
-    model = "Xenova/all-MiniLM-L6-v2",
+    model = "Xenova/all-roberta-large-v1",
     pooling = "mean",
     normalize = true,
   } = options || {};
 
-  const extractor = await pipeline("feature-extraction", model);
+  if (!extractorCache[model]) {
+    extractorCache[model] = pipeline("feature-extraction", model);
+  }
+
+  const extractor = await extractorCache[model];
 
   const tensor = await extractor(content, {
     pooling,
     normalize,
   });
 
-  return tensor.data
+  return tensor.data;
 };
