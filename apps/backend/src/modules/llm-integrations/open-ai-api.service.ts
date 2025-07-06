@@ -12,7 +12,7 @@ export class OpenAiApiService {
   }
 
   async summarize(message: string): Promise<string> {
-    if (!history || history.length === 0) {
+    if (!message || message.length === 0) {
       return 'No message to summarize.';
     }
 

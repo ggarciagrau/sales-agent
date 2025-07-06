@@ -15,7 +15,7 @@ export class GuidelineService {
   async getRelevant(embedding: number[], limit: number): Promise<Guideline[]> {
     const result = await this.dbService.client.$queryRawUnsafe(
       `
-      SELECT *, embedding <-> $1 AS distance
+      SELECT id, title, content, category, priority, embedding <-> $1::vector AS distance
       FROM guidelines
       WHERE is_global = false
       ORDER BY distance ASC
