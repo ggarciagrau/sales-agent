@@ -4,17 +4,8 @@ import { execSync } from "child_process";
 import { readFileSync, mkdirSync } from "fs";
 import { PrismaDB } from "db-connector";
 import { generateEmbedding } from "@sales-agent/generate-embedding";
+import { RawGuideline, Guideline} from "@sales-agent/types";
 
-interface RawGuideline {
-  content: string;
-  priority: number;
-  category: string;
-  is_glboal: string;
-}
-
-interface Guideline extends RawGuideline {
-  embedding: unknown;
-}
 
 const filePath = fileURLToPath(import.meta.url);
 const currentDir = path.dirname(filePath);

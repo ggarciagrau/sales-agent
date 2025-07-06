@@ -1,18 +1,5 @@
-import { fileURLToPath } from "url";
-import path from "path";
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { pipeline } from "@xenova/transformers";
-
-interface RawGuideline {
-  content: string;
-  priority: number;
-  category: string;
-  is_glboal: string;
-}
-
-interface Guideline extends RawGuideline {
-  embedding: unknown;
-}
+import { RawGuideline, Guideline } from '@sales-agent/types';
 
 interface Options {
   model?: string;
